@@ -1,0 +1,271 @@
+.header {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+.header__inner {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.keyword-content {
+    text-align: center;
+    width: 500px;
+    height: 40px;
+    display: inline-block;
+}
+
+.keyword {
+    width: 500px;
+    height: 40px;
+    padding: 0 40px;
+    font-size: 25px;
+    display: inline-block;
+    margin-left: 250px;
+}
+
+.header-nav-list {
+    display: flex;
+}
+
+.logout-link {
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    margin-right: 20px;
+    background: black;
+    border: none;
+    cursor: pointer;
+}
+
+.mypage-link {
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    margin-right: 20px;
+}
+
+.sell-link {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 5px 15px;
+    font-size: 25px;
+    border-radius: 5px;
+}
+
+.contents {
+    text-align: center;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sell-title {
+    margin-top: 40px;
+}
+
+.sell-products-image-title {
+    text-align: left;
+    margin-top: 50px;
+    line-height: 0;
+}
+
+.sell-products-image-form {
+    width: 600px;
+    height: 150px;
+    border: 1px dotted #5f5f5f;
+    position: relative;
+}
+
+.preview-image {
+    width: 150px;
+}
+
+.image-button-label {
+    position: absolute;
+    top: 55px;
+    left: 250px;
+    width: 120px;
+    height: 30px;
+    color: #ff5555;
+    font-size: 14px;
+    border: 1px solid #ff5555;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.image-button {
+    display: none;
+    margin-top: 100px;
+}
+
+.sell-product-product-detail {
+    text-align: left;
+    margin-top: 50px;
+    line-height: 0;
+    color: #5f5f5f;
+}
+
+.border {
+    width: 600px;
+    border: 1px solid #5f5f5f;
+}
+
+.category-title {
+    text-align: left;
+    margin-top: 50px;
+    line-height: 0;
+}
+
+.product-category-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-category-items label {
+    display: block;
+    color: #ff5555;
+    padding: 5px 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 25px;
+    border: 1px solid #ff5555;
+    cursor: pointer;
+}
+
+.product-category-item:checked+label {
+    background-color: #ff5555;
+    color: white;
+}
+
+.product-category-item {
+    display: none;
+}
+
+.status-title {
+    text-align: left;
+    margin-top: 50px;
+    line-height: 0;
+}
+
+.select-inner {
+    position: relative;
+}
+
+.select-inner::after {
+    content: "";
+    position: absolute;
+    top: 22px;
+    right: 12px;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    border-top: 12px solid #5f5f5f;
+    border-bottom: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.status-select {
+    appearance: none;
+    width: 600px;
+    height: 40px;
+    border: 1px solid #5f5f5f;
+    border-radius: 3px;
+    padding-left: 10px;
+}
+
+.product-name-explanation-title {
+    text-align: left;
+    margin-top: 50px;
+    line-height: 0;
+    color: #5f5f5f;
+}
+
+.product-name-title {
+    text-align: left;
+    margin-top: 50px;
+    line-height: 0;
+}
+
+.product-name {
+    width: 600px;
+    height: 40px;
+    padding-left: 10px;
+}
+
+.brand-name-title {
+    text-align: left;
+    margin-top: 50px;
+    line-height: 0;
+}
+
+.brand-name {
+    width: 600px;
+    height: 40px;
+    padding-left: 10px;
+}
+
+.product-explanation-title {
+    text-align: left;
+    margin-top: 50px;
+    line-height: 0;
+}
+
+.product-explanation {
+    width: 600px;
+    height: 100px;
+    resize: none;
+    padding: 10px 10px;
+}
+
+.product-price-title {
+    text-align: left;
+    margin-top: 50px;
+    line-height: 0;
+}
+
+.product-price {
+    width: 600px;
+    height: 40px;
+    padding-left: 10px;
+}
+
+.product-price::placeholder {
+    color: black;
+}
+
+.sell-button-area {
+    width: 600px;
+    height: 40px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.sell-button-submit {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: #ff5555;
+    border: none;
+    border-radius: 3px;
+    font-size: 18px;
+}
+
+.input_error_message {
+    color: red;
+}
+
+.textarea_error_message {
+    color: red;
+}
+
+.select_error_message {
+    color: red;
+}
