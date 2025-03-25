@@ -1,7 +1,7 @@
 # flea-market
 
 ## 環境構築
-Dockerビルド
+Dockerビルド<br>
 1.クローンする
 ```
 git clone git@github.com:miimi22/flea-market.git
@@ -15,7 +15,7 @@ cd flea-market
 docker-compose up -d --build
 ```
 
-Laravel環境構築
+Laravel環境構築<br>
 1.
 ```
 docker-compose exec php bash
