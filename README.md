@@ -2,7 +2,7 @@
 
 ## 環境構築
 Dockerビルド<br>
-\&emsp;1.
+&emsp;1.
 ```
 git clone git@github.com:miimi22/flea-market.git
 ```
