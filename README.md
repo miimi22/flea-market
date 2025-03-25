@@ -2,7 +2,7 @@
 
 ## 環境構築
 Dockerビルド<br>
-&emsp1.
+&emsp;1.
 ```
 git clone git@github.com:miimi22/flea-market.git
 ```
@@ -16,7 +16,7 @@ docker-compose up -d --build
 ```
 
 Laravel環境構築<br>
-&emsp1. 
+&emsp;1. 
 ```
 docker-compose exec php bash
 ```
