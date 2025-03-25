@@ -16,7 +16,7 @@ docker-compose up -d --build
 ```
 
 Laravel環境構築<br>
- 1.
+&emsp;1.
 ```
 docker-compose exec php bash
 ```
@@ -24,11 +24,11 @@ docker-compose exec php bash
 ```
 composer install
 ```
- 3.「.env.example」ファイルをコピーして「.env」ファイルを作成する
+&emsp;3.「.env.example」ファイルをコピーして「.env」ファイルを作成する
 ```
 cp .env.example .env
 ```
- 4.「.env」ファイルの環境変数を次の通りに変更
+&emsp;4.「.env」ファイルの環境変数を次の通りに変更
 ```
 DB_CONNECTION=mysql
 DB_HOST=mysql
@@ -41,11 +41,11 @@ DB_PASSWORD=laravel_pass
 ```
 php artisan key:generate
 ```
- 6.マイグレーションの実行
+&emsp;6.マイグレーションの実行
 ```
 php artisan migrate
 ```
- 7.シーディングの実行
+&emsp;7.シーディングの実行
 ```
 php artisan db:seed
 ```
