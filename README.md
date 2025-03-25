@@ -4,8 +4,8 @@
 Dockerビルド<br>
 1.
 ```
-git clone git@github.com:miimi22/flea-market.git<br>
-```
+git clone git@github.com:miimi22/flea-market.git
+```<br>
 2.
 ```
 cd flea-market
