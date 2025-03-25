@@ -2,24 +2,54 @@
 
 ## 環境構築
 Dockerビルド
-1. git clone git@github.com:miimi22/flea-market.git
-2. cd flea-market
-3. docker-compose up -d --build
+1.
+```
+git clone git@github.com:miimi22/flea-market.git
+```
+2.
+```
+cd flea-market
+```
+3.
+```
+docker-compose up -d --build
+```
 
 Laravel環境構築
-1. docker-compose exec php bash
-2. composer install
-3. cp .env.example .env、.envの環境変数を次の通りに変更<br>
-   DB_CONNECTION=mysql<br>
-   DB_HOST=mysql<br>
-   DB_PORT=3306<br>
-   DB_DATABASE=laravel_db<br>
-   DB_USERNAME=laravel_user<br>
-   DB_PASSWORD=laravel_pass<br>
-4. php artisan key:generate
-5. php artisan migrate
-6. php artisan db:seed
-7. シンボリックリンク作成
+1.
+```
+docker-compose exec php bash
+```
+2.
+```
+composer install
+```
+3.「.env.example」ファイルをコピーして「.env」ファイルを作成する
+```
+cp .env.example .env
+```
+4.「.env」ファイルの環境変数を次の通りに変更
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+```
+5. アプリケーションキーの作成
+```
+php artisan key:generate
+```
+6.マイグレーションの実行
+```
+php artisan migrate
+```
+7.シーディングの実行
+```
+php artisan db:seed
+```
+8. シンボリックリンク作成
 ```
 php artisan storage:link
 ```
