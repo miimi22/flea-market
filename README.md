@@ -41,7 +41,7 @@ DB_PASSWORD=laravel_pass
 ```
 php artisan key:generate
 ```
-&emsp;6.マイグレーションの実行
+6. マイグレーションの実行
 ```
 php artisan migrate
 ```
