@@ -2,7 +2,7 @@
 
 ## 環境構築
 Dockerビルド<br>
-&emsp;1.
+1. 
 ```
 git clone git@github.com:miimi22/flea-market.git
 ```
@@ -16,7 +16,7 @@ docker-compose up -d --build
 ```
 
 Laravel環境構築<br>
-&emsp;1.
+1. 
 ```
 docker-compose exec php bash
 ```
@@ -24,11 +24,11 @@ docker-compose exec php bash
 ```
 composer install
 ```
-&emsp;3.「.env.example」ファイルをコピーして「.env」ファイルを作成する
+3. 「.env.example」ファイルをコピーして「.env」ファイルを作成する
 ```
 cp .env.example .env
 ```
-&emsp;4.「.env」ファイルの環境変数を次の通りに変更
+4. 「.env」ファイルの環境変数を次の通りに変更
 ```
 DB_CONNECTION=mysql
 DB_HOST=mysql
@@ -45,7 +45,7 @@ php artisan key:generate
 ```
 php artisan migrate
 ```
-&emsp;7.シーディングの実行
+7. シーディングの実行
 ```
 php artisan db:seed
 ```
