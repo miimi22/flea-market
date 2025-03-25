@@ -55,11 +55,11 @@ php artisan storage:link
 ```
 
 ## 使用技術(実行環境)
-・PHP 8.0
+・PHP 8.4.1
 <br>
-・Laravel 10.0
+・Laravel 8.83.29
 <br>
-・MySQL 8.0
+・MySQL 8.0.41
 
 ## ER図
 ![fleamarket-er](https://github.com/user-attachments/assets/0ffeac5a-0a44-4d58-8d27-a91f2509e51a)
