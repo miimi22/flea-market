@@ -2,8 +2,8 @@
 
 ## 環境構築
 Dockerビルド
-1. git clone git@github.com:miimi22/mogitate.git
-2. cd mogitate
+1. git clone git@github.com:miimi22/flea-market.git
+2. cd flea-market
 3. docker-compose up -d --build
 
 Laravel環境構築
@@ -28,9 +28,11 @@ Laravel環境構築
 ・MySQL 8.0
 
 ## ER図
-![mogitate-er](https://github.com/user-attachments/assets/8a1e7b2a-12ac-46fc-8da5-e2a02e480b2b)
+![fleamarket-er](https://github.com/user-attachments/assets/0ffeac5a-0a44-4d58-8d27-a91f2509e51a)
 
 ## URL
-・開発環境：http://localhost/
+・商品一覧画面：http://localhost/
+<br>
+・ユーザー登録画面：http://localhost/register
 <br>
 ・phpMyAdmin：http://localhost:8080
