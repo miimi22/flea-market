@@ -2,15 +2,15 @@
 
 ## 環境構築
 Dockerビルド<br>
-1.クローンする
+1.
 ```
 git clone git@github.com:miimi22/flea-market.git
 ```
-2.ディレクトリを移動する
+2.
 ```
 cd flea-market
 ```
-3.Dockerを立ち上げる
+3.
 ```
 docker-compose up -d --build
 ```
