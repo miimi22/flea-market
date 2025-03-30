@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -19,15 +20,12 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique(User::class),
-            ],
+        $request = app(RegisterRequest::class);
+        $mergedInput = array_merge($input, $request->validated());
+
+        Validator::make($mergedInput, [
+            'name' => ['required'],
+            'email' => ['required', 'email'],
             'password' => $this->passwordRules(),
         ])->validate();
 

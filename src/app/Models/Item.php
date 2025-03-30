@@ -10,7 +10,7 @@ class Item extends Model
     use HasFactory;
 
     public function likes(){
-        return $this->hasMany('App\Models\Like');
+        return $this->hasMany(Like::class);
     }
 
     public function comments(){
@@ -26,6 +26,20 @@ class Item extends Model
     }
 
     public function condition(){
-        return $this->hasOne('App\Models\Condition');
+        return $this->belongsTo('App\Models\Condition');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'item_category');
+    }
+
+    public function isSold()
+    {
+        if ($this->payment()->exists()) {
+            return true;
+        }
+
+        return false;
     }
 }

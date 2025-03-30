@@ -21,7 +21,6 @@ class CreateItemsTable extends Migration
             $table->decimal('product_price', 10, 0);
             $table->string('product_image');
             $table->foreignId('user_id');
-            $table->foreignId('category_id');
             $table->foreignId('condition_id');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();

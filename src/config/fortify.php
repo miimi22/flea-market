@@ -145,7 +145,9 @@ return [
     */
 
     'features' => [
-        Features::registration(),
+        Features::registration(), function (Request $request) {
+            return app(RegisteredUserController::class)->store(app(RegisterRequest::class));
+        },
         Features::resetPasswords(),
         // Features::emailVerification(),
         Features::updateProfileInformation(),

@@ -24,8 +24,8 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'sending_code' => 'required|regex:/^\d{3}-\d{4}$/',
-            // 'sending_address' => 'required',
+            'sending_code' => 'required|regex:/^\d{3}-\d{4}$/',
+            'sending_address' => 'required',
         ];
     }
 

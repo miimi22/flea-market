@@ -1,67 +1,7 @@
-.header {
-    background-color: black;
-    width: 100%;
-    height: 100%;
-}
-
-.header__inner {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.keyword-content {
-    text-align: center;
-    width: 500px;
-    height: 40px;
-    display: inline-block;
-}
-
-.keyword {
-    width: 500px;
-    height: 40px;
-    padding: 0 40px;
-    font-size: 25px;
-    display: inline-block;
-    margin-left: 250px;
-}
-
-.header-nav-list {
-    display: flex;
-}
-
-.logout-link {
-    text-decoration: none;
-    color: white;
-    font-size: 25px;
-    margin-right: 20px;
-    background: black;
-    border: none;
-    cursor: pointer;
-}
-
-.mypage-link {
-    text-decoration: none;
-    color: white;
-    font-size: 25px;
-    margin-right: 20px;
-}
-
-.sell-link {
-    text-decoration: none;
-    color: black;
-    background-color: white;
-    padding: 5px 15px;
-    font-size: 25px;
-    border-radius: 5px;
-}
-
 .product-detail {
     display: flex;
-    width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
+    max-width: 1400px;
+    margin: 50px auto;
 }
 
 .product-image-area {
@@ -70,8 +10,8 @@
 }
 
 .product-image {
-    width: 600px;
-    height: 600px;
+    width: 550px;
+    height: 550px;
 }
 
 .product-description-area {
@@ -89,7 +29,7 @@
 }
 
 .yen {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .product-price {
@@ -97,7 +37,7 @@
 }
 
 .tax-included {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .product-actions {
@@ -115,6 +55,10 @@
     outline: none;
     padding: 0;
     appearance: none;
+}
+
+.like-button.liked {
+    background-color: yellow;
 }
 
 .star {
@@ -142,10 +86,11 @@
 .purchase-area {
     margin-top: 10px;
     width: 700px;
+    text-align: left;
 }
 
 .purchase-button {
-    width: 700px;
+    width: 600px;
     height: 45px;
     font-size: 25px;
     color: white;
@@ -154,7 +99,8 @@
     border-radius: 3px;
     text-decoration: none;
     display: inline-block;
-    line-height: 50px;
+    line-height: 45px;
+    text-align: center;
 }
 
 .product-description {
@@ -169,10 +115,11 @@
 
 .category-info {
     font-weight: bold;
+    margin-right: 40px;
 }
 
 .category-info-text {
-    margin-left: 50px;
+    margin-left: 10px;
     font-size: 13px;
     border: 1px solid #d9d9d9;
     background-color: #d9d9d9;
@@ -182,10 +129,10 @@
 
 .product-condition {
     font-weight: bold;
+    margin-right: 50px;
 }
 
 .product-condition-text {
-    margin-left: 50px;
     font-size: 13px;
     padding: 0 20px;
 }
@@ -206,7 +153,7 @@
 
 .comments-text {
     margin-top: 10px;
-    width: 700px;
+    width: 600px;
     height: 60px;
     background-color: #e5e5e5;
     border-radius: 3px;
@@ -219,8 +166,9 @@
 }
 
 .comment-area {
-    width: 700px;
+    width: 600px;
     height: 300px;
+    text-align: left;
 }
 
 .comments-form {
@@ -231,11 +179,11 @@
 
 .comments-button {
     margin-top: 30px;
-    width: 700px;
+    width: 600px;
 }
 
 .comments-button-submit {
-    width: 700px;
+    width: 600px;
     height: 45px;
     font-size: 20px;
     color: white;
@@ -244,9 +192,28 @@
     border-radius: 3px;
     text-decoration: none;
     display: inline-block;
-    line-height: 50px;
+    line-height: 45px;
 }
 
 .textarea_error_message {
     color: red;
+}
+
+@media screen and (max-width: 850px) {
+    .product-detail {
+        display: grid;
+        justify-content: center;
+        max-width: 850px;
+        margin: 50px auto;
+    }
+
+    .product-image-area {
+        width: 100%;
+        text-align: center;
+    }
+
+    .product-description-area {
+        width: 600px;
+        margin: 50px auto;
+    }
 }

@@ -18,8 +18,8 @@ class CreatePaymentsTable extends Migration
             $table->string('content');
             $table->foreignId('user_id');
             $table->foreignId('item_id');
-            $table->string('sending_code')->nullable();
-            $table->string('sending_address')->nullable();
+            $table->string('sending_code');
+            $table->string('sending_address');
             $table->string('sending_building')->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
