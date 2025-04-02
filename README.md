@@ -62,15 +62,23 @@ php artisan storage:link
 
 ## テストアカウント
 name：山田太郎
+<br>
 email：taro@gmail.com
+<br>
 password：coachtech1
----------------------
+<br>
+<br>
 name：鈴木花子
+<br>
 email：hanako@gmail.com
+<br>
 password：coachtech2
----------------------
+<br>
+<br>
 name：田中一郎
+<br>
 email：ichiro@gmail.com
+<br>
 password：coachtech3
 
 ## 使用技術(実行環境)
