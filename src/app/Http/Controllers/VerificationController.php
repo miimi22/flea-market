@@ -22,23 +22,23 @@ class VerificationController extends Controller
         $user = User::find($id);
 
         if (!$user || !hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
-            return redirect('/login')->with('error', '無効なURLです。');
+            return redirect('/login');
         }
 
         if ($user->hasVerifiedEmail()) {
-            return redirect('/mypage/profile')->with('success', 'メールアドレスは既に認証済みです。');
+            return redirect('/mypage/profile');
         }
 
         $user->markEmailAsVerified();
         event(new Verified($user));
 
-        return redirect('/mypage/profile')->with('success', 'メールアドレスの認証が完了しました。');
+        return redirect('/mypage/profile');
     }
 
     public function resend(Request $request)
     {
         if (Auth::user()->hasVerifiedEmail()) {
-            return redirect('/mypage/profile')->with('success', 'メールアドレスは既に認証済みです。');
+            return redirect('/mypage/profile');
         }
 
         $verificationUrl = URL::temporarySignedRoute(
@@ -49,6 +49,6 @@ class VerificationController extends Controller
 
         Mail::to(Auth::user()->email)->send(new VerifyEmail($verificationUrl));
 
-        return redirect()->route('verification.notice')->with('success', '認証メールを再送しました。');
+        return redirect()->route('verification.notice');
     }
 }
