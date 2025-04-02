@@ -71,4 +71,4 @@ php artisan storage:link
 <br>
 ・phpMyAdmin：http://localhost:8080
 <br>
-・MailHog：http//localhost:8025
+・MailHog：http://localhost:8025
