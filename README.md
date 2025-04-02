@@ -70,3 +70,5 @@ php artisan storage:link
 ・ユーザー登録画面：http://localhost/register
 <br>
 ・phpMyAdmin：http://localhost:8080
+<br>
+・MailHog：http//localhost:8025
