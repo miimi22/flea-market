@@ -36,6 +36,12 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
+<br>
+MAIL_FROM_ADDRESS=test@example.com
+<br>
+STRIPE_KEY=pk_test_51R5ivkBMK4Sj2g3hDPVzSyDPlPrJj1NTr1dzm0CN8HIXf0LpU0ieXF1tOg1Eys9shiTwJDZtyxrk77WFa1Gq4HML00zAFNGMHA
+STRIPE_SECRET=sk_test_51R5ivkBMK4Sj2g3hlwWfNtZwCTpzPhg09ppGC9VqIKIm6A501MO5HzGjm3OgW0ef8SW5vXGv7quVI18kFKMNjM0P00Sizpp5QM
+STRIPE_WEBHOOK_SECRET=whsec_942235169754ca9bd2b396061c8d0c02276282396ad7c034d6e1410840665b08
 ```
 5. アプリケーションキーの作成
 ```
@@ -53,6 +59,19 @@ php artisan db:seed
 ```
 php artisan storage:link
 ```
+
+## テストアカウント
+name：山田太郎
+email：taro@gmail.com
+password：coachtech1
+---------------------
+name：鈴木花子
+email：hanako@gmail.com
+password：coachtech2
+---------------------
+name：田中一郎
+email：ichiro@gmail.com
+password：coachtech3
 
 ## 使用技術(実行環境)
 ・PHP 8.4.1
