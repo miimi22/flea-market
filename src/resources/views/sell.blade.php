@@ -39,9 +39,9 @@
                     <input type="checkbox" name="category" class="product-category-item" id="category-{{$category->id}}" value="{{$category->id}}"><label for="category-{{$category->id}}">{{$category->category}}</label>
                     @endforeach
                 </div>
-                @error('product_category')
+                @error('category')
                     <span class="input_error">
-                        <p class="input_error_message">{{$errors->first('product_category')}}</p>
+                        <p class="input_error_message">{{$errors->first('category')}}</p>
                     </span>
                 @enderror
             </div>
@@ -55,9 +55,9 @@
                         @endforeach
                     </select>
                 </div>
-                @error('status')
+                @error('content')
                     <span class="select_error">
-                        <p class="select_error_message">{{$errors->first('status')}}</p>
+                        <p class="select_error_message">{{$errors->first('content')}}</p>
                     </span>
                 @enderror
             </div>
@@ -67,7 +67,7 @@
             <div class="border"></div>
             <div class="product-name-area">
                 <h3 class="product-name-title">商品名</h3>
-                <input type="text" name="product_name" class="product-name">
+                <input type="text" name="product_name" class="product-name" value="{{old('product_name')}}">
                 @error('product_name')
                     <span class="input_error">
                         <p class="input_error_message">{{$errors->first('product_name')}}</p>
@@ -76,20 +76,20 @@
             </div>
             <div class="brand-name-area">
                 <h3 class="brand-name-title">ブランド名</h3>
-                <input type="text" name="brand_name" class="brand-name">
+                <input type="text" name="brand_name" class="brand-name" value="{{old('brand_name')}}">
             </div>
             <div class="product-explanation-area">
                 <h3 class="product-explanation-title">商品の説明</h3>
-                <textarea name="product_description" id="" class="product-explanation"></textarea>
-                @error('product_explanation')
+                <textarea name="product_description" id="" class="product-explanation">{{old('product_description')}}</textarea>
+                @error('product_description')
                     <span class="textarea_error">
-                        <p class="textarea_error_message">{{$errors->first('product_explanation')}}</p>
+                        <p class="textarea_error_message">{{$errors->first('product_description')}}</p>
                     </span>
                 @enderror
             </div>
             <div class="product-price-area">
                 <h3 class="product-price-title">販売価格</h3>
-                <input type="text" name="product_price" class="product-price" placeholder="¥">
+                <input type="text" name="product_price" class="product-price" placeholder="¥" value="{{old('product_price')}}">
                 @error('product_price')
                     <span class="input_error">
                         <p class="input_error_message">{{$errors->first('product_price')}}</p>
@@ -102,4 +102,24 @@
         </div>
     </form>
 </div>
+@endsection
+
+@section('script')
+<script>
+    const inputElm = document.getElementById('inputElm');
+    inputElm.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.addEventListener('load', (e) => {
+            const imgElm = document.createElement('img');
+            imgElm.src = e.target.result;
+            
+            const targetElm = document.getElementById('preview');
+            targetElm.appendChild(imgElm);
+        });
+    });
+</script>
 @endsection

@@ -34,9 +34,9 @@
                     <option value="カード支払い">カード支払い</option>
                 </select>
             </div>
-            @error('payment_method')
+            @error('payment_content')
                 <span class="select_error">
-                    <p class="select_error_message">{{$errors->first('payment_method')}}</p>
+                    <p class="select_error_message">{{$errors->first('payment_content')}}</p>
                 </span>
             @enderror
         </div>
@@ -78,51 +78,62 @@
 @section('script')
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const paymentSelect = document.getElementById('payment-method-select');
-        const selectedPayment = document.getElementById('selected-payment-method');
-        const hiddenPayment = document.getElementById('hidden-payment-method');
+        const selectedPaymentMethod = document.getElementById('selected-payment-method');
+        const hiddenPaymentMethod = document.getElementById('hidden-payment-method');
         const purchaseButton = document.getElementById('purchase-button');
+        const paymentForm = document.getElementById('payment-form');
         const stripe = Stripe('pk_test_51R5ivkBMK4Sj2g3hDPVzSyDPlPrJj1NTr1dzm0CN8HIXf0LpU0ieXF1tOg1Eys9shiTwJDZtyxrk77WFa1Gq4HML00zAFNGMHA');
 
-        paymentSelect.addEventListener('change', function() {
-            if (paymentSelect.value === '選択してください') {
-                selectedPayment.textContent = '';
-                hiddenPayment.value = '';
+        function updatePaymentMethod() {
+            if (paymentSelect.value) {
+                selectedPaymentMethod.textContent = paymentSelect.value;
+                hiddenPaymentMethod.value = paymentSelect.value;
             } else {
-                selectedPayment.textContent = paymentSelect.value;
-                hiddenPayment.value = paymentSelect.value;
+                selectedPaymentMethod.textContent = '';
+                hiddenPaymentMethod.value = '';
             }
-        });
+        }
 
-        purchaseButton.addEventListener('click', function(event) {
-            event.preventDefault();
+        updatePaymentMethod();
 
-            const formData = new FormData(document.getElementById('payment-form'));
+        paymentSelect.addEventListener('change', updatePaymentMethod);
 
-            const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
-            const csrfToken = csrfTokenMeta ? csrfTokenMeta.getAttribute('content') : null;
-
-            fetch('/purchase/stripe', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken
-                }
-            })
-            .then(response => response.json())
-            .then(session => {
-                return stripe.redirectToCheckout({ sessionId: session.id });
-            })
-            .then(result => {
-                if (result.error) {
-                    alert(result.error.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('決済処理中にエラーが発生しました。');
-            });
+        purchaseButton.addEventListener('click', function () {
+            if (paymentSelect.value) {
+                fetch('/purchase/stripe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({
+                        item_id: {{ $item->id }},
+                        payment_content: paymentSelect.value
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(session => {
+                    return stripe.redirectToCheckout({ sessionId: session.id });
+                })
+                .then(result => {
+                    if (result.error) {
+                        alert(result.error.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch Error:', error);
+                    alert('決済処理中にエラーが発生しました。');
+                });
+            } else {
+                alert('支払い方法を選択してください。');
+            }
         });
     });
 </script>
