@@ -69,7 +69,7 @@ class FortifyServiceProvider extends ServiceProvider
                         return $user;
                     // return Limit::perMinute(10)->by($email . $request->ip());
                 }
-                 throw ValidationException::withMessages([
+                throw ValidationException::withMessages([
                     'email' => ['ログイン情報が登録されていません'],
                 ]);
             });

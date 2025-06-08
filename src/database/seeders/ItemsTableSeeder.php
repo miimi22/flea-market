@@ -28,7 +28,7 @@ class ItemsTableSeeder extends Seeder
                 'product_price' => '5000',
                 'product_description' => '高速で信頼性の高いハードディスク',
                 'product_image' => 'storage/images/Hdd.jpg',
-                'user_id' => '3',
+                'user_id' => '1',
                 'condition_id' => '2',
             ],
             [
@@ -36,7 +36,7 @@ class ItemsTableSeeder extends Seeder
                 'product_price' => '300',
                 'product_description' => '新鮮な玉ねぎ3束のセット',
                 'product_image' => 'storage/images/Onion.jpg',
-                'user_id' => '2',
+                'user_id' => '1',
                 'condition_id' => '3',
             ],
             [
@@ -52,7 +52,7 @@ class ItemsTableSeeder extends Seeder
                 'product_price' => '45000',
                 'product_description' => '高性能なノートパソコン',
                 'product_image' => 'storage/images/Laptop.jpg',
-                'user_id' => '3',
+                'user_id' => '1',
                 'condition_id' => '1',
             ],
             [
@@ -60,7 +60,7 @@ class ItemsTableSeeder extends Seeder
                 'product_price' => '8000',
                 'product_description' => '高音質のレコーディング用マイク',
                 'product_image' => 'storage/images/Mic.jpg',
-                'user_id' => '3',
+                'user_id' => '2',
                 'condition_id' => '2',
             ],
             [
@@ -76,7 +76,7 @@ class ItemsTableSeeder extends Seeder
                 'product_price' => '500',
                 'product_description' => '使いやすいタンブラー',
                 'product_image' => 'storage/images/Tumbler.jpg',
-                'user_id' => '1',
+                'user_id' => '2',
                 'condition_id' => '4',
             ],
             [
