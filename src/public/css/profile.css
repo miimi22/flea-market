@@ -138,3 +138,17 @@ h1 {
     font-weight: bold;
     vertical-align: middle;
 }
+
+.user-rating {
+    margin-top: 65px;
+    margin-left: -150px;
+    font-size: 30px;
+}
+
+.star-filled {
+    color: #fff048;
+}
+
+.star-empty {
+    color: #d9d9d9;
+}

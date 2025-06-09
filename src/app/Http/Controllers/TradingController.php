@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Item;
 use App\Models\TradingComment;
+use App\Models\Rating;
 
 class TradingController extends Controller
 {
@@ -38,7 +39,18 @@ class TradingController extends Controller
 
         $other_trading_items = $all_trading_items->where('id', '!=', $item_id);
 
-        return view('trading', compact('item', 'user', 'partner', 'comments', 'isBuyer', 'other_trading_items'));
+        $buyerHasRated = false;
+        if ($item->payment) {
+            $buyerHasRated = Rating::where('item_id', $item_id)
+                                   ->where('evaluator_id', $item->payment->user_id)
+                                   ->exists();
+        }
+        
+        $sellerHasRated = Rating::where('item_id', $item_id)
+                                ->where('evaluator_id', $item->user_id)
+                                ->exists();
+
+        return view('trading', compact('item', 'user', 'partner', 'comments', 'isBuyer', 'isSeller', 'other_trading_items', 'buyerHasRated', 'sellerHasRated'));
     }
 
     public function storeComment(TradingCommentRequest $request, $item_id)
@@ -84,5 +96,39 @@ class TradingController extends Controller
         $comment->delete();
 
         return back();
+    }
+
+    public function storeRating(Request $request, $item_id)
+    {
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        $item = Item::findOrFail($item_id);
+        $user = Auth::user();
+
+        $isSeller = $user->id === $item->user_id;
+        $isBuyer = $item->payment && $user->id === $item->payment->user_id;
+
+        if (!$isSeller && !$isBuyer) {
+            abort(403, '評価する権限がありません。');
+        }
+        $evaluatedUser = $isSeller ? $item->payment->user : $item->user;
+
+        $alreadyRated = Rating::where('item_id', $item_id)
+                                ->where('evaluator_id', $user->id)
+                                ->exists();
+        if ($alreadyRated) {
+            return back()->with('error', 'すでにこの取引の評価は完了しています。');
+        }
+
+        Rating::create([
+            'evaluator_id' => $user->id,
+            'evaluated_id' => $evaluatedUser->id,
+            'item_id'      => $item->id,
+            'rating'       => $request->rating,
+        ]);
+
+        return redirect('/')->with('success', '取引相手の評価が完了しました。');
     }
 }

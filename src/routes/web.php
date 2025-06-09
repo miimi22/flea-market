@@ -46,4 +46,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/trading/{item_id}/comment', [TradingController::class, 'storeComment'])->name('trading.comment.store');
     Route::delete('/trading/comment/{comment}', [TradingController::class, 'destroyComment'])->name('trading.comment.destroy');
     Route::patch('/trading/comment/{comment}', [TradingController::class, 'updateComment'])->name('trading.comment.update');
+    Route::post('/rating/{item_id}', [TradingController::class, 'storeRating'])->middleware('auth')->name('trading.rating.store');
 });

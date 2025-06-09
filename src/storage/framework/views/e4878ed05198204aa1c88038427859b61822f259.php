@@ -1,136 +1,135 @@
-@extends('layouts.app')
-
-@section('title')
+<?php $__env->startSection('title'); ?>
 <title>取引チャット画面</title>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('css')
-<link rel="stylesheet" href="{{ asset('css/trading.css') }}" />
-@endsection
+<?php $__env->startSection('css'); ?>
+<link rel="stylesheet" href="<?php echo e(asset('css/trading.css')); ?>" />
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="page-container">
     <aside class="sidebar">
         <h2>その他の取引</h2>
         <div class="other-trades-list">
-            @if(isset($other_trading_items) && $other_trading_items->isNotEmpty())
-                @foreach($other_trading_items as $other_item)
-                    <a href="{{ route('trading.show', ['item_id' => $other_item->id]) }}" class="other-trade-link">
-                        {{ $other_item->product_name }}
+            <?php if(isset($other_trading_items) && $other_trading_items->isNotEmpty()): ?>
+                <?php $__currentLoopData = $other_trading_items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $other_item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <a href="<?php echo e(route('trading.show', ['item_id' => $other_item->id])); ?>" class="other-trade-link">
+                        <?php echo e($other_item->product_name); ?>
+
                     </a>
-                @endforeach
-            @else
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php else: ?>
                 <p class="no-other-trades">他に取引中の商品はありません。</p>
-            @endif
+            <?php endif; ?>
         </div>
     </aside>
     <main class="transaction-container">
         <header class="transaction-header">
             <div class="header-left-group">
-                <img class="image" src="{{ asset($partner->profile->profile_image ?? 'images/default.png') }}" width="80" height="80" style="border-radius: 50%;">
-                <h1>「{{ $partner->name }}」さんとの取引画面</h1>
+                <img class="image" src="<?php echo e(asset($partner->profile->profile_image ?? 'images/default.png')); ?>" width="80" height="80" style="border-radius: 50%;">
+                <h1>「<?php echo e($partner->name); ?>」さんとの取引画面</h1>
             </div>
-            @if($isBuyer && !$buyerHasRated)
+            <?php if($isBuyer && !$buyerHasRated): ?>
                 <button class="complete-btn">取引を完了する</button>
-            @endif
+            <?php endif; ?>
         </header>
         <hr class="separator">
         <section class="item-info">
-            <img src="{{ asset($item->product_image) }}" alt="{{ $item->product_name }}の画像" class="item-image">
+            <img src="<?php echo e(asset($item->product_image)); ?>" alt="<?php echo e($item->product_name); ?>の画像" class="item-image">
             <div class="item-details">
-                <p class="item-name">{{ $item->product_name }}</p>
-                <p class="item-price">¥{{ number_format($item->product_price) }}</p>
+                <p class="item-name"><?php echo e($item->product_name); ?></p>
+                <p class="item-price">¥<?php echo e(number_format($item->product_price)); ?></p>
             </div>
         </section>
         <hr class="separator">
         <div class="message-area">
-            @foreach($comments as $comment)
-                @if($comment->user_id === Auth::id())
+            <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if($comment->user_id === Auth::id()): ?>
                     <div class="message-bubble current-user">
                         <div class="message-header">
-                            <img src="{{ asset($comment->user->profile->profile_image ?? 'images/default.png') }}" alt="" class="avatar-image">
-                            <p class="user-name">{{ $comment->user->name }}</p>
+                            <img src="<?php echo e(asset($comment->user->profile->profile_image ?? 'images/default.png')); ?>" alt="" class="avatar-image">
+                            <p class="user-name"><?php echo e($comment->user->name); ?></p>
                         </div>
                         <div class="message-body">
-                            <div class="message-text" id="comment-text-{{ $comment->id }}">
-                                @if($comment->comment)
-                                    <p>{{ $comment->comment }}</p>
-                                @endif
+                            <div class="message-text" id="comment-text-<?php echo e($comment->id); ?>">
+                                <?php if($comment->comment): ?>
+                                    <p><?php echo e($comment->comment); ?></p>
+                                <?php endif; ?>
                             </div>
-                            @if($comment->trading_image)
+                            <?php if($comment->trading_image): ?>
                                 <div class="message-image-container">
-                                    <a href="{{ asset($comment->trading_image) }}" target="_blank">
-                                        <img src="{{ asset($comment->trading_image) }}" alt="投稿画像" class="message-image">
+                                    <a href="<?php echo e(asset($comment->trading_image)); ?>" target="_blank">
+                                        <img src="<?php echo e(asset($comment->trading_image)); ?>" alt="投稿画像" class="message-image">
                                     </a>
                                 </div>
-                            @endif
-                            <form action="{{ route('trading.comment.update', $comment) }}" method="POST" class="comment-edit-form" id="comment-edit-form-{{ $comment->id }}" style="display: none;">
-                                @csrf
-                                @method('PATCH')
-                                <input type="text" name="comment" value="{{ $comment->comment }}" required>
+                            <?php endif; ?>
+                            <form action="<?php echo e(route('trading.comment.update', $comment)); ?>" method="POST" class="comment-edit-form" id="comment-edit-form-<?php echo e($comment->id); ?>" style="display: none;">
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('PATCH'); ?>
+                                <input type="text" name="comment" value="<?php echo e($comment->comment); ?>" required>
                                 <div class="edit-form-actions">
                                     <button type="submit" class="save-btn">保存</button>
-                                    <button type="button" class="cancel-edit-btn" data-comment-id="{{ $comment->id }}">キャンセル</button>
+                                    <button type="button" class="cancel-edit-btn" data-comment-id="<?php echo e($comment->id); ?>">キャンセル</button>
                                 </div>
                             </form>
                             <div class="message-actions">
-                                <a href="#" class="edit-link js-edit-comment-button" data-comment-id="{{ $comment->id }}">編集</a>
-                                <form action="{{ route('trading.comment.destroy', ['comment' => $comment->id]) }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
+                                <a href="#" class="edit-link js-edit-comment-button" data-comment-id="<?php echo e($comment->id); ?>">編集</a>
+                                <form action="<?php echo e(route('trading.comment.destroy', ['comment' => $comment->id])); ?>" method="POST" style="display: inline;">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
                                     <button type="submit" class="delete-link">削除</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                @else
+                <?php else: ?>
                     <div class="message-bubble other-user">
                         <div class="message-header">
-                            <img src="{{ asset($comment->user->profile->profile_image ?? 'images/default.png') }}" alt="" class="avatar-image">
-                            <p class="user-name">{{ $comment->user->name }}</p>
+                            <img src="<?php echo e(asset($comment->user->profile->profile_image ?? 'images/default.png')); ?>" alt="" class="avatar-image">
+                            <p class="user-name"><?php echo e($comment->user->name); ?></p>
                         </div>
                         <div class="message-body">
                             <div class="message-text">
-                                <p>{{ $comment->comment }}</p>
+                                <p><?php echo e($comment->comment); ?></p>
                             </div>
-                            @if($comment->trading_image)
+                            <?php if($comment->trading_image): ?>
                                 <div class="message-image-container">
-                                    <a href="{{ asset($comment->trading_image) }}" target="_blank">
-                                        <img src="{{ asset($comment->trading_image) }}" alt="投稿画像" class="message-image">
+                                    <a href="<?php echo e(asset($comment->trading_image)); ?>" target="_blank">
+                                        <img src="<?php echo e(asset($comment->trading_image)); ?>" alt="投稿画像" class="message-image">
                                     </a>
                                 </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                     </div>
-                @endif
-            @endforeach
+                <?php endif; ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
         <footer class="message-form-container">
-            @if ($errors->any())
+            <?php if($errors->any()): ?>
                 <div class="error-messages">
                     <ul>
-                        @foreach ($errors->all() as $error)
-                            <li style="color: red;">{{ $error }}</li>
-                        @endforeach
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li style="color: red;"><?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
-            @endif
+            <?php endif; ?>
             <div id="image-preview-container" class="image-preview-container"></div>
-            <form class="message-form" action="{{ route('trading.comment.store', ['item_id' => $item->id]) }}" method="POST" enctype="multipart/form-data">
-                @csrf
+            <form class="message-form" action="<?php echo e(route('trading.comment.store', ['item_id' => $item->id])); ?>" method="POST" enctype="multipart/form-data">
+                <?php echo csrf_field(); ?>
                 <input type="file" name="trading_image" id="trading_image_input" style="display: none;" accept="image/*">
                 <input type="text" name="comment" class="comment" id="comment-input" placeholder="取引メッセージを記入してください">
                 <button type="button" class="add-image-btn" id="add-image-button">画像を追加</button>
                 <button type="submit" class="send-btn">
-                    <img src="{{asset('images/send-btn.jpg')}}" alt="送信" width="65" height="55">
+                    <img src="<?php echo e(asset('images/send-btn.jpg')); ?>" alt="送信" width="65" height="55">
                 </button>
             </form>
     </main>
 </div>
 <div id="rating-modal" class="modal-overlay" style="display: none;">
     <div class="modal-content">
-        <form action="{{ route('trading.rating.store', ['item_id' => $item->id]) }}" method="POST">
-            @csrf
+        <form action="<?php echo e(route('trading.rating.store', ['item_id' => $item->id])); ?>" method="POST">
+            <?php echo csrf_field(); ?>
             <h2>取引が完了しました。</h2>
             <div class="border"></div>
             <p class="rating-question">今回の取引相手はどうでしたか？</p>
@@ -149,9 +148,9 @@
         </form>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script')
+<?php $__env->startSection('script'); ?>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -165,9 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     if (ratingModal) {
-        @if(isset($isSeller) && $isSeller && $buyerHasRated && !$sellerHasRated)
+        <?php if(isset($isSeller) && $isSeller && $buyerHasRated && !$sellerHasRated): ?>
             ratingModal.style.display = 'flex';
-        @endif
+        <?php endif; ?>
 
         if (completeBtn) {
             completeBtn.addEventListener('click', () => {
@@ -183,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (commentInput && messageForm) {
-        const itemId = {{ $item->id }};
+        const itemId = <?php echo e($item->id); ?>;
         const storageKey = `trading_draft_${itemId}`;
 
         const savedDraft = sessionStorage.getItem(storageKey);
@@ -284,4 +283,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/resources/views/trading.blade.php ENDPATH**/ ?>

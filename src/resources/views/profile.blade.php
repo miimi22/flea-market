@@ -13,6 +13,17 @@
     <div class="user-content">
         <img class="image" src="{{ $profile->profile_image ? asset($profile->profile_image) : asset('images/default.png') }}" width="100" height="100">
         <h1>{{$user->name}}</h1>
+        @if(isset($ratingCount) && $ratingCount > 0)
+            <div class="user-rating">
+                @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= $roundedRating)
+                        <span class="star-filled">★</span>
+                    @else
+                        <span class="star-empty">★</span>
+                    @endif
+                @endfor
+            </div>
+        @endif
         <a href="/mypage/profile" class="edit-link">プロフィールを編集</a>
     </div>
     <div class="category">

@@ -7,6 +7,7 @@ use App\Models\Profile;
 use App\Models\Payment;
 use App\Models\User;
 use App\Models\TradingComment;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Auth;
@@ -84,10 +85,19 @@ class ProfileController extends Controller
 
         $trading_message_count = $trading_items->sum('unread_messages_count');
 
+        $ratingsQuery = Rating::where('evaluated_id', $user->id);
+        $ratingCount = $ratingsQuery->count();
+        $roundedRating = 0;
+
+        if ($ratingCount > 0) {
+            $averageRating = $ratingsQuery->avg('rating');
+            $roundedRating = round($averageRating);
+        }
+
         if (!$profile) {
             $profile = new Profile();
         }
 
-        return view('profile', compact('user', 'profile', 'items', 'payments', 'trading_items', 'trading_message_count'));
+        return view('profile', compact('user', 'profile', 'items', 'payments', 'trading_items', 'trading_message_count', 'ratingCount', 'roundedRating'));
     }
 }
