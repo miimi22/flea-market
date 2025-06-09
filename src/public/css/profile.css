@@ -49,6 +49,13 @@ h1 {
     color: #5f5f5f;
 }
 
+.trading {
+    text-decoration: none;
+    margin-left: 40px;
+    font-size: 25px;
+    color: #5f5f5f;
+}
+
 .line {
     border: 2px solid #5f5f5f;
 }
@@ -72,6 +79,24 @@ h1 {
 .merchandise {
     position: relative;
     box-sizing: border-box;
+}
+
+.item-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: #e53e3e;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .merchandise-link {
@@ -101,4 +126,15 @@ h1 {
     .merchandises {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+.badge {
+    background-color: #ea352d;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 7px;
+    margin-left: 5px;
+    font-weight: bold;
+    vertical-align: middle;
 }

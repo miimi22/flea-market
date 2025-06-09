@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Item extends Model
 {
@@ -41,5 +42,15 @@ class Item extends Model
         }
 
         return false;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function tradingComments()
+    {
+        return $this->hasMany(TradingComment::class);
     }
 }

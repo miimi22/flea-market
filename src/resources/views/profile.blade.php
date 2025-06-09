@@ -18,6 +18,12 @@
     <div class="category">
         <a href="?tab=sell" class="sell {{ request('tab') == 'sell' ? 'active' : '' }}" data-target="true">出品した商品</a>
         <a href="?tab=buy" class="purchase {{ request('tab') == 'buy' ? 'active' : '' }}" data-target="true">購入した商品</a>
+        <a href="?tab=trading" class="trading {{ request('tab') == 'trading' ? 'active' : '' }}" data-target="true">
+            取引中の商品
+            @if (isset($trading_message_count) && $trading_message_count > 0)
+                <span class="badge">{{ $trading_message_count }}</span>
+            @endif
+        </a>
     </div>
     <div class="line"></div>
     <div class="merchandises-container">
@@ -38,6 +44,21 @@
                         <p class="merchandise-name">{{$payment->item->product_name}}</p>
                     </div>
                 @endforeach
+            @elseif (request('tab') == 'trading')
+                @if (isset($trading_items) && $trading_items->count() > 0)
+                    @foreach ($trading_items as $item)
+                        <div class="merchandise">
+                            @if($item->unread_messages_count > 0)
+                                <span class="item-badge">{{ $item->unread_messages_count }}</span>
+                            @endif
+                            <a href="{{ route('trading.show', ['item_id' => $item->id]) }}" class="merchandise-link"></a>
+                            <img src="{{asset($item->product_image)}}" alt="商品画像" class="merchandise-image" width="300" height="300">
+                            <p class="merchandise-name">{{$item->product_name}}</p>
+                        </div>
+                    @endforeach
+                @else
+                    <p>取引中の商品はありません。</p>
+                @endif
             @endif
         </div>
     </div>

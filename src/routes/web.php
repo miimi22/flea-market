@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\TradingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,4 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress']);
     Route::post('/purchase/stripe', [PurchaseController::class, 'stripe'])->name('purchase.stripe');
     Route::get('/purchase/success/{item_id}/{payment_content}', [PurchaseController::class, 'success'])->name('purchase.success');
+    Route::get('/trading/{item_id}', [TradingController::class, 'show'])->name('trading.show');
+    Route::post('/trading/{item_id}/comment', [TradingController::class, 'storeComment'])->name('trading.comment.store');
+    Route::delete('/trading/comment/{comment}', [TradingController::class, 'destroyComment'])->name('trading.comment.destroy');
+    Route::patch('/trading/comment/{comment}', [TradingController::class, 'updateComment'])->name('trading.comment.update');
 });

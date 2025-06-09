@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Profile;
 use App\Models\Payment;
 use App\Models\User;
+use App\Models\TradingComment;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Auth;
@@ -68,10 +69,25 @@ class ProfileController extends Controller
         $items = Item::where('user_id', $user->id)->get();
         $payments = Payment::where('user_id', $user->id)->with('item')->get();
 
+        $trading_items = Item::withCount(['tradingComments as unread_messages_count' => function ($query) use ($user) {
+            $query->where('user_id', '!=', $user->id);
+        }])
+        ->withMax('tradingComments', 'created_at')
+        ->where(function ($query) use ($user) {
+            $query->where('user_id', $user->id)->whereHas('payment');
+        })
+        ->orWhereHas('payment', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })
+        ->orderBy('trading_comments_max_created_at', 'desc')
+        ->get();
+
+        $trading_message_count = $trading_items->sum('unread_messages_count');
+
         if (!$profile) {
             $profile = new Profile();
         }
 
-        return view('profile', compact('user', 'profile', 'items', 'payments'));
+        return view('profile', compact('user', 'profile', 'items', 'payments', 'trading_items', 'trading_message_count'));
     }
 }
