@@ -15,9 +15,9 @@ class CreateRatingsTable extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('evaluator_id')->constrained('users'); // 評価したユーザー
-            $table->foreignId('evaluated_id')->constrained('users'); // 評価されたユーザー
-            $table->foreignId('item_id')->constrained('items');      // どの取引に対する評価か
+            $table->foreignId('evaluator_id')->constrained('users');
+            $table->foreignId('evaluated_id')->constrained('users');
+            $table->foreignId('item_id')->constrained('items');
             $table->unsignedTinyInteger('rating');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
