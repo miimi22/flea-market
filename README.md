@@ -89,7 +89,7 @@ password：coachtech3
 ・MySQL 8.0.41
 
 ## ER図
-![fleamarket-er](https://github.com/user-attachments/assets/0ffeac5a-0a44-4d58-8d27-a91f2509e51a)
+![fleamarket-er](https://github.com/user-attachments/assets/56e9a145-0ad2-4ba7-ba97-bdbbcde6311f)
 
 ## URL
 ・商品一覧画面：http://localhost/
