@@ -408,3 +408,18 @@ body {
 .star-rating:hover input[type="radio"]~label:hover~label {
     color: #fff048;
 }
+
+@media screen and (max-width: 850px) {
+    .header-left-group h1 {
+        font-size: 25px;
+    }
+
+    .item-details .item-name {
+        font-size: 25px;
+    }
+
+    .comment::placeholder {
+        font-size: 12px;
+        font-weight: bold;
+    }
+}

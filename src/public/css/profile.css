@@ -126,6 +126,10 @@ h1 {
     .merchandises {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .category {
+        margin-left: 100px;
+    }
 }
 
 .badge {
