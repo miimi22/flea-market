@@ -6,6 +6,8 @@ use App\Http\Requests\TradingCommentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TransactionCompletedMail;
 use App\Models\Item;
 use App\Models\TradingComment;
 use App\Models\Rating;
@@ -128,6 +130,15 @@ class TradingController extends Controller
             'item_id'      => $item->id,
             'rating'       => $request->rating,
         ]);
+
+        if ($isBuyer) {
+            $seller = $item->user;
+            try {
+                Mail::to($seller->email)->send(new TransactionCompletedMail($item, $seller));
+            } catch (\Exception $e) {
+                \Log::error('取引完了メールの送信に失敗しました。 EvaluatorID: ' . $user->id . ' ItemID: ' . $item->id . ' Error: ' . $e->getMessage());
+            }
+        }
 
         return redirect('/')->with('success', '取引相手の評価が完了しました。');
     }
